@@ -37,4 +37,22 @@ public class Drift : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject child = collision.gameObject;
+            child.transform.SetParent(gameObject.transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            GameObject child = collision.gameObject;
+            child.transform.SetParent(null);
+        }
+    }
 }

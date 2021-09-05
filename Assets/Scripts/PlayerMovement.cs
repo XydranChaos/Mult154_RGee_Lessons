@@ -24,5 +24,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rbPlayer.AddForce(direction * speed, ForceMode.Force);
+
+        if(transform.position.z > 40)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 40);
+        }
+        else if(transform.position.z < -40)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -40);
+        }
     }
 }
