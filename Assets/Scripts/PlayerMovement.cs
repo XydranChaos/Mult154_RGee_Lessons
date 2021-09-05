@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,10 +9,32 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 direction = Vector3.zero;
     public float speed = 10.0f;
     public GameObject spawnPoint = null;
+    private Dictionary<Item.VegetableType, int> ItemInventory = new Dictionary<Item.VegetableType, int>();
+
     // Start is called before the first frame update
     void Start()
     {
+        foreach(Item.VegetableType item in System.Enum.GetValues(typeof(Item.VegetableType)))
+        {
+            ItemInventory.Add(item, 0);
+        }
         rbPlayer = GetComponent<Rigidbody>();
+    }
+
+    private void AddToInventory(Item item)
+    {
+        ItemInventory[item.typeOfVeggies]++;
+    }
+
+    private void PrintInventory()
+    {
+        string output = "";
+        
+        foreach(KeyValuePair<Item.VegetableType, int> kvp in ItemInventory)
+        {
+            output += string.Format("{0}: {1} ", kvp.Key, kvp.Value);
+        }
+        Debug.Log(output);
     }
 
     private void Update()
@@ -39,6 +62,16 @@ public class PlayerMovement : MonoBehaviour
     private void Respawn()
     {
         rbPlayer.MovePosition(spawnPoint.transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Item"))
+        {
+            Item item = other.gameObject.GetComponent<Item>();
+            AddToInventory(item);
+            PrintInventory();
+        }
     }
 
     private void OnTriggerExit(Collider other)
