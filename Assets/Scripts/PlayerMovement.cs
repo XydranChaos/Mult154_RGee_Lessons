@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rbPlayer;
     private Vector3 direction = Vector3.zero;
     public float speed = 10.0f;
+    public GameObject spawnPoint = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,19 @@ public class PlayerMovement : MonoBehaviour
         else if(transform.position.z < -40)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -40);
+        }
+    }
+
+    private void Respawn()
+    {
+        rbPlayer.MovePosition(spawnPoint.transform.position);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Hazard"))
+        {
+            Respawn();
         }
     }
 }
