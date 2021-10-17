@@ -9,7 +9,7 @@ public class PlayerMovement : NetworkBehaviour
     private Rigidbody rbPlayer;
     private Vector3 direction = Vector3.zero;
     public float speed = 10.0f;
-    public GameObject spawnPoint = null;
+    public GameObject[] spawnPoints = null;
     private Dictionary<Item.VegetableType, int> ItemInventory = new Dictionary<Item.VegetableType, int>();
 
     // Start is called before the first frame update
@@ -24,6 +24,7 @@ public class PlayerMovement : NetworkBehaviour
             ItemInventory.Add(item, 0);
         }
         rbPlayer = GetComponent<Rigidbody>();
+        spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
     }
     
 
@@ -75,7 +76,12 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Respawn()
     {
-        rbPlayer.MovePosition(spawnPoint.transform.position);
+        int index = 0;
+        while(Physics.CheckBox(spawnPoints[index].transform.position, new Vector3(1.5f, 1.5f, 1.5f)))
+        {
+            index++;
+        }
+        rbPlayer.MovePosition(spawnPoints[index].transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
