@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Profiling;
+//using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -15,16 +15,17 @@ public class PlayerMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!isLocalPlayer)
+        if (!isLocalPlayer)
         {
             return;
         }
-        foreach(Item.VegetableType item in System.Enum.GetValues(typeof(Item.VegetableType)))
+        rbPlayer = GetComponent<Rigidbody>();
+        spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+
+        foreach (Item.VegetableType item in System.Enum.GetValues(typeof(Item.VegetableType)))
         {
             ItemInventory.Add(item, 0);
         }
-        rbPlayer = GetComponent<Rigidbody>();
-        spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
     }
     
 
