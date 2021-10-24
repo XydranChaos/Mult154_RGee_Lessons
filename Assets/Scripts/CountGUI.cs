@@ -17,6 +17,6 @@ public class CountGUI : MonoBehaviour
     public void UpdateCount()
     {
         count++;
-        tmProElem.text = itemName + "; " + count;
+        tmProElem.text = itemName + ": " + count;
     }
 }
