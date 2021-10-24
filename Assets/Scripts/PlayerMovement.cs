@@ -10,7 +10,7 @@ public class PlayerMovement : NetworkBehaviour
     private Vector3 direction = Vector3.zero;
     public float speed = 10.0f;
     public GameObject[] spawnPoints = null;
-    private Dictionary<Item.VegetableType, int> ItemInventory = new Dictionary<Item.VegetableType, int>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,28 +21,6 @@ public class PlayerMovement : NetworkBehaviour
         }
         rbPlayer = GetComponent<Rigidbody>();
         spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
-
-        foreach (Item.VegetableType item in System.Enum.GetValues(typeof(Item.VegetableType)))
-        {
-            ItemInventory.Add(item, 0);
-        }
-    }
-    
-
-    private void AddToInventory(Item item)
-    {
-        ItemInventory[item.typeOfVeggies]++;
-    }
-
-    private void PrintInventory()
-    {
-        string output = "";
-        
-        foreach(KeyValuePair<Item.VegetableType, int> kvp in ItemInventory)
-        {
-            output += string.Format("{0}: {1} ", kvp.Key, kvp.Value);
-        }
-        Debug.Log(output);
     }
 
     private void Update()
@@ -83,20 +61,6 @@ public class PlayerMovement : NetworkBehaviour
             index++;
         }
         rbPlayer.MovePosition(spawnPoints[index].transform.position);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        if (other.CompareTag("Item"))
-        {
-            Item item = other.gameObject.GetComponent<Item>();
-            AddToInventory(item);
-            PrintInventory();
-        }
     }
 
     private void OnTriggerExit(Collider other)
