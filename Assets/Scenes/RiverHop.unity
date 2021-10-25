@@ -1593,8 +1593,8 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 7333523846512597087, guid: 6370e55a91600024aa090d5fe39d0da7, type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: 
-  m_OnlineScene: 
+  m_OfflineScene: RiverHop
+  m_OnlineScene: RiverHop
   m_SpawnPrefabs:
   - {fileID: 4332197957388532425, guid: deaaf4f3defe31d45b8d680664741847, type: 3}
   - {fileID: 1733224239582520663, guid: 30b6bd83834c93042b3c8a45c24f45b9, type: 3}
