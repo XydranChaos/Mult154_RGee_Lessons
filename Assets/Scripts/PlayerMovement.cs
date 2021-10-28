@@ -34,6 +34,14 @@ public class PlayerMovement : NetworkBehaviour
 
         direction = new Vector3(horMove, 0, verMove);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, direction * 10);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(transform.position, rbPlayer.velocity * 5);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -61,6 +69,7 @@ public class PlayerMovement : NetworkBehaviour
             index++;
         }
         rbPlayer.MovePosition(spawnPoints[index].transform.position);
+        rbPlayer.velocity = Vector3.zero;
     }
 
     private void OnTriggerExit(Collider other)
