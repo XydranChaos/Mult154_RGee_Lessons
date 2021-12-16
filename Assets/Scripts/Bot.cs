@@ -9,19 +9,31 @@ using UnityEngine.AI;
 
 public class Bot : MonoBehaviour
 {
+    public enum BMode
+    {
+        SEEK,
+        FLEE,
+        PURSUE,
+        EVADE,
+        HIDE
+    }
+
     NavMeshAgent agent;
     public GameObject target;
     public GameObject[] hidingSpots;
+    private Rigidbody rbBody;
+    public BMode mode;
 
     float currentSpeed
     {
-        get { return agent.velocity.magnitude; }
+        get { return rbBody.velocity.magnitude; }
     }
 
     // Start is called before the first frame update
     void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        rbBody = target.GetComponent<Rigidbody>();
     }
 
     void Seek(Vector3 location)
@@ -39,7 +51,7 @@ public class Bot : MonoBehaviour
     {
         Vector3 targetDir = target.transform.position - this.transform.position;
 
-        float relativeHeading = Vector3.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
+        /*float relativeHeading = Vector3.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
 
         float toTarget = Vector3.Angle(this.transform.forward, this.transform.TransformVector(targetDir));
 
@@ -47,7 +59,7 @@ public class Bot : MonoBehaviour
         {
             Seek(target.transform.position);
             return;
-        }
+        }*/
 
         float lookAhead = targetDir.magnitude / (agent.speed + currentSpeed);
         Seek(target.transform.position + target.transform.forward * lookAhead);
@@ -162,7 +174,22 @@ public class Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CanTargetSeeMe())
-            Flee(target.transform.position);
+        //if (CanTargetSeeMe())
+            
+         switch(mode)
+        {
+            case BMode.SEEK:
+                Seek(target.transform.position);
+                break;
+            case BMode.PURSUE:
+                Pursue();
+                break;
+            case BMode.FLEE:
+                Flee(target.transform.position);
+                break;
+            case BMode.EVADE:
+                Evade();
+                break;
+        }
     }
 }
