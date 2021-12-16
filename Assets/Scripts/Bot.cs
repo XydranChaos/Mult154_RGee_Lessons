@@ -15,6 +15,7 @@ public class Bot : MonoBehaviour
         FLEE,
         PURSUE,
         EVADE,
+        WANDER,
         HIDE
     }
 
@@ -87,9 +88,9 @@ public class Bot : MonoBehaviour
         wanderTarget *= wanderRadius;
 
         Vector3 targetLocal = wanderTarget + new Vector3(0, 0, wanderDistance);
-        Vector3 targetWorld = this.gameObject.transform.InverseTransformVector(targetLocal);
+        //Vector3 targetWorld = this.gameObject.transform.InverseTransformVector(targetLocal);
 
-        Seek(targetWorld);
+        Seek(transform.position + targetLocal);
     }
 
     void Hide()
@@ -189,6 +190,9 @@ public class Bot : MonoBehaviour
                 break;
             case BMode.EVADE:
                 Evade();
+                break;
+            case BMode.WANDER:
+                Wander();
                 break;
         }
     }
