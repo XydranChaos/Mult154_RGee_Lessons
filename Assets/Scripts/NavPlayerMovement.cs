@@ -58,6 +58,10 @@ public class NavPlayerMovement : MonoBehaviour
             anim.SetTrigger("died");
             StartCoroutine(ZoomOut());
         }
+        else
+        {
+            anim.SetTrigger("twitchLeftEar");
+        }
     }
 
     IEnumerator ZoomOut()
