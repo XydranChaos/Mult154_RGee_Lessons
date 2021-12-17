@@ -514,7 +514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c81551cac83ae54d8e5bada3f14ccb5, type: 2}
+  - {fileID: 2100000, guid: 3c071d2601c4eaf45a5d16cc1dd34360, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1683,6 +1683,7 @@ GameObject:
   - component: {fileID: 1536300999}
   - component: {fileID: 1536300998}
   - component: {fileID: 1536300997}
+  - component: {fileID: 1536301001}
   m_Layer: 0
   m_Name: RiverWater
   m_TagString: Untagged
@@ -1761,12 +1762,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536300996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.4, z: 0}
   m_LocalScale: {x: 12, y: 1, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1536301001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536300996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde436f01cdfca544a9a70893bd9f036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setColor: {r: 0.94509804, g: 0.254902, b: 0.8227819, a: 0}
 --- !u!1 &1720599195
 GameObject:
   m_ObjectHideFlags: 0
