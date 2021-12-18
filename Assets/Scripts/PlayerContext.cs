@@ -34,6 +34,7 @@ public class RiverState: PlayerState
     public RiverState(NetworkBehaviour thisObj) : base(thisObj)
     {
         stateName = "RiverHop";
+        GameData.gamePlayStart = Time.time;
     }
 
     // Start is called before the first frame update
