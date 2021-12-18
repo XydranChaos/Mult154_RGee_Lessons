@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RiverHop.unity
     guid: 1b94ce83245162741afaf30dd7334c4e
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: c15b667b2bc848e43808cc618e2089a7
   m_configObjects: {}
