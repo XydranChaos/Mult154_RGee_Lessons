@@ -204,6 +204,12 @@ public class ForestState : PlayerState
             //lookTarget.position = other.transform.position;
             thisObject.StartCoroutine(LookAndLookAway(lookTarget.position, other.transform.position));
         }
+        if (other.CompareTag("Exit"))
+        {
+            NetworkManager networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
+            networkManager.ServerChangeScene("EndScene");
+        }
+
     }
 
     public override void OnTriggerExit(Collider other)
