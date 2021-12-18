@@ -255,12 +255,19 @@ public class PlayerContext : NetworkBehaviour
         {
             currentState = new RiverState(this);
         }
-        if (SceneManager.GetActiveScene().name == "ForestLevel")
+        else if (SceneManager.GetActiveScene().name == "ForestLevel")
         {
             currentState = new ForestState(this);
         }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
 
-        currentState.Start();
+        if (currentState != null)
+        {
+            currentState.Start();
+        }
     }
 
     // Update is called once per frame

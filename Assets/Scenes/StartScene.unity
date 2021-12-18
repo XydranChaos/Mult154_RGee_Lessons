@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3066038, g: 0.8837837, b: 1, a: 0.8235294}
+  m_Color: {r: 0.16602883, g: 0.74112403, b: 0.8584906, a: 0.8784314}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -265,6 +265,7 @@ MonoBehaviour:
   - {fileID: 3206898282689008354, guid: 01743094f216db44cacfa6ea75b170ca, type: 3}
   - {fileID: 8343099602945418235, guid: 5ce27ab45fa4b654c899bf19d00fbff4, type: 3}
   - {fileID: 7747073436415456602, guid: d0a9f8acb81aa0849bd9da7933e3a365, type: 3}
+  - {fileID: 0}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
